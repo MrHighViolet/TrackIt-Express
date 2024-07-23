@@ -25,6 +25,11 @@ In the command line, run
 npm install express
 ```
 
+4) Install helmet
+```
+npm install helmet
+```
+
 ### Running application
 
 In the command line, run
@@ -32,3 +37,4 @@ In the command line, run
 ```
 node app.js
 ```
+
