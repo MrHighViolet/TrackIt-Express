@@ -14,7 +14,6 @@ app.listen(port, () => {
     console.log(`We are now listening on port ${port}`)
 })
 
-
 app.get("/activities/:id", (req,res) => {
 
     //const { activity } = res.body
@@ -29,5 +28,5 @@ app.get("/activities/:id", (req,res) => {
         )
     });
 
-
 //http://localhost:3000/
+
