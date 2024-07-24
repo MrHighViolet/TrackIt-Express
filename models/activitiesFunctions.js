@@ -1,7 +1,7 @@
-import activities from "../libs/activities.js" 
+import activities from "../libs/activities.js"; 
 
 
-export async function getActivitiesByID(number) { 
+export default async function getActivitiesByID(number) { 
     const resultList = [];
     
     for (let i = 0; i < activities.length; i++) {

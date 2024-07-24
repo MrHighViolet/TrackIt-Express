@@ -1,6 +1,8 @@
 import express from 'express';
 import helmet from 'helmet';
 
+import getActivitiesByID from "./models/activitiesFunctions.js";
+
 const app = express();
 const port = 3000;
 
@@ -14,19 +16,18 @@ app.listen(port, () => {
     console.log(`We are now listening on port ${port}`)
 })
 
-app.get("/activities/:id", (req,res) => {
 
-    //const { activity } = res.body
-
-    res.send(
-        {
-            "id": "54321234", // UUID
-            "activity_submitted": "1719486190058", // simple Epoc timestamp (Date.now() in JS)
-            "activity_type": "run", // choose some standard types
-            "activity_duration": "30", // choose standard unit type (minutes probably)
-        }
-        )
-    });
+app.get("/activities/:id", async (req,res) => {
+   //const { id } = req.params;
+   const id = req.params.id; // id from reqest param's object
+   const payload =  await getActivitiesByID(id); // call the function getID
+   //if (payload)) {
+    res.json(payload);
+  }
+);
 
 //http://localhost:3000/
 
+
+
+//Build a request handler function in app.js, including status code, payload and error messaging.
