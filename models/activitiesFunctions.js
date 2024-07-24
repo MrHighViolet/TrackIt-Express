@@ -1,6 +1,6 @@
 import activities from "../libs/activities.js"; 
 
-export default async function getActivitiesByID(number) { 
+export async function getActivitiesByID(number) { 
     const resultList = [];
     
     for (let i = 0; i < activities.length; i++) {
@@ -10,13 +10,16 @@ export default async function getActivitiesByID(number) {
             resultList.push(activities[i]);
         }
       }
-        console.log(resultList)
+        
     if (resultList.length === 0) {
       throw new Error(`No activity with ${number} found.`);
     }
-    
-  
   return resultList;
+};
+
+export async function addNewActivity(newActivity) {
+  activities.push(newActivity);
+  return newActivity;
 };
 
 // console.log(getActivitiesByID(74321234));

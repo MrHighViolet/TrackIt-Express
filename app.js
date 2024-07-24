@@ -5,7 +5,10 @@ import helmet from 'helmet';
 const app = express();
 const port = 3000;
 
-import getActivitiesByID from "./models/activitiesFunctions.js";
+import {
+    getActivitiesByID,
+    addNewActivity
+    } from "./models/activitiesFunctions.js";
 
 app.use(express.json())
 
@@ -30,12 +33,34 @@ app.get("/activities/:id", async (req,res) => {
                 "payload": payload
             });
         } catch (error) {
-            res.status(500).json({
+            res.status(404).json({
                 "error": error.message
             });
         }
     });
-//    
+
+
+app.post("/activities", async (req, res) => {
+    const newActivity = req.body
+    const activity = {
+        ...newActivity,
+        id: uuidv4(),
+        activity_submitted: Date.now()
+    }
+    try {
+        const payload = await addNewActivity(activity);
+        res.status(200).json({
+            "success": true,
+            "new_activity": payload
+        });
+    } catch (error) {
+        res.status(404).json({
+            "error": error.message
+        });
+    }
+});
+
+    
 //http://localhost:3000/
 
 
