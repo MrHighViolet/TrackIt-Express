@@ -20,14 +20,20 @@ app.listen(port, () => {
 app.get("/activities/:id", async (req,res) => {
    //const { id } = req.params;
    const id = req.params.id; // id from reqest param's object
-   const payload =  await getActivitiesByID(id); // call the function getID
-   //if (payload)) {
-    res.json(payload);
-  }
-);
-
+   try {
+            const payload = await getActivitiesByID(id);
+            res.status(200).json({
+                "success": true,
+                "payload": payload
+            });
+        } catch (error) {
+            res.status(500).json({
+                error: error.message
+            });
+        }
+    });
+//    
 //http://localhost:3000/
-
 
 
 //Build a request handler function in app.js, including status code, payload and error messaging.
