@@ -1,10 +1,13 @@
 import express from 'express';
 import helmet from 'helmet';
 
-import getActivitiesByID from "./models/activitiesFunctions.js";
 
 const app = express();
 const port = 3000;
+
+import getActivitiesByID from "./models/activitiesFunctions.js";
+
+app.use(express.json())
 
 app.use(helmet());
 
