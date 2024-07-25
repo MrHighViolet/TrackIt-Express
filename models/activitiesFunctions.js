@@ -1,5 +1,7 @@
 import activities from "../libs/activities.js"; 
 
+
+
 export async function getActivitiesByUserID(number) { 
     const resultList = [];
     
@@ -16,6 +18,7 @@ export async function getActivitiesByUserID(number) {
     }
   return resultList;
 };
+
 
 export async function getActivitiesByActivityID(number) { 
   const resultList = [];
@@ -41,7 +44,29 @@ export async function addNewActivity(newActivity) {
 };
 
 export async function updateActivity(updates) {
-  // update activity
-}
+  let index = null
+  const activityID = 'id' in updates
+  if (!activityID){
+      throw new Error(`You haven't given us an id.`);
+  }
+  for (let i = 0; i < activities.length; i++) {
+    if (activities[i].id == updates.id) {
+         index = i
+    }
+  }
+  if (index === null) {
+      throw new Error(`No activity ID with ${updates.id} found.`);
+    }
+  
+  const activityType = 'activity_type' in updates
+  if (activityType) {
+    activities[index].activity_type = updates.activity_type
+  }
+  const activityDuration = 'activity_duration' in updates
+  if (activityDuration) {
+    activities[index].activity_duration = updates.activity_duration
+  }
+  activities[index].activity_submitted = Date.now()
 
-// console.log(getActivitiesByID(74321234));
+  return activities[index]
+};

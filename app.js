@@ -8,7 +8,8 @@ const port = 3000;
 import {
     getActivitiesByUserID,
     getActivitiesByActivityID,
-    addNewActivity
+    addNewActivity,
+    updateActivity
     } from "./models/activitiesFunctions.js";
 
 app.use(express.json())
@@ -78,6 +79,23 @@ app.post("/activities", async (req, res) => {
         });
     }
 });
+
+app.put("/activities", async (req, res) => {
+    const updates = req.body
+    try {
+        const payload = await updateActivity(updates);
+        res.status(200).json({
+            "success": true,
+            "new_activity": payload
+        });
+    } catch (error) {
+        res.status(404).json({
+            "error": error.message
+        });
+    }
+});
+
+
 
 // app.put("/activities/:id", async (req, res) => {
 //     const update = req.body
