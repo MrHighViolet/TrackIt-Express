@@ -1,6 +1,7 @@
 import activities from "../libs/activities.js"; 
 
 
+/* This function returns an array of activities linked to a specific User ID */
 
 export async function getActivitiesByUserID(number) { 
     const resultList = [];
@@ -19,6 +20,7 @@ export async function getActivitiesByUserID(number) {
   return resultList;
 };
 
+/* This function returns an array containing a single activity linked to a specific Activity ID */
 
 export async function getActivitiesByActivityID(number) { 
   const resultList = [];
@@ -38,10 +40,14 @@ return resultList;
 };
 
 
+/* This function adds a new activity to our database and returns the newly added activity */
+
 export async function addNewActivity(newActivity) {
   activities.push(newActivity);
   return newActivity;
 };
+
+/* This function returns an existing activity with its properties updated according to the user's input */
 
 export async function updateActivity(updates) {
   let index = null
@@ -70,3 +76,4 @@ export async function updateActivity(updates) {
 
   return activities[index]
 };
+
