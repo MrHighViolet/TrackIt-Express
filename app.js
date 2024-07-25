@@ -6,7 +6,8 @@ const app = express();
 const port = 3000;
 
 import {
-    getActivitiesByID,
+    getActivitiesByUserID,
+    getActivitiesByActivityID,
     addNewActivity
     } from "./models/activitiesFunctions.js";
 
@@ -23,11 +24,11 @@ app.listen(port, () => {
 })
 
 
-app.get("/activities/:id", async (req,res) => {
+app.get("/activities/user/:id", async (req,res) => {
    //const { id } = req.params;
    const id = req.params.id; // id from reqest param's object
    try {
-            const payload = await getActivitiesByID(id);
+            const payload = await getActivitiesByUserID(id);
             res.status(200).json({
                 "success": true,
                 "payload": payload
@@ -40,12 +41,30 @@ app.get("/activities/:id", async (req,res) => {
     });
 
 
+app.get("/activities/:id", async (req,res) => {
+    //const { id } = req.params;
+    const id = req.params.id; // id from reqest param's object
+    try {
+        const payload = await getActivitiesByActivityID(id);
+        res.status(200).json({
+            "success": true,
+            "payload": payload
+        });
+    } catch (error) {
+        res.status(404).json({
+            "error": error.message
+        });
+    }
+});
+
+
 app.post("/activities", async (req, res) => {
     const newActivity = req.body
     const activity = {
-        ...newActivity,
+        user_id: uuidv4(),
         id: uuidv4(),
-        activity_submitted: Date.now()
+        activity_submitted: Date.now(),
+        ...newActivity,
     }
     try {
         const payload = await addNewActivity(activity);
@@ -60,6 +79,25 @@ app.post("/activities", async (req, res) => {
     }
 });
 
+// app.put("/activities/:id", async (req, res) => {
+//     const update = req.body
+//     try {
+//             const payload = await getActivitiesByUserID(id);
+//             res.status(200).json({
+//                 "success": true,
+//                 "payload": payload
+//             });
+//         } catch (error) {
+//             res.status(404).json({
+//                 "error": error.message
+//             });
+//         }
+//     const updatedActivity = {
+//         activity_submitted: Date.now(),
+//         activity_type: update.activity_type,
+//         activity_duration: update.activity_duration
+//     }
+// })
     
 //http://localhost:3000/
 
