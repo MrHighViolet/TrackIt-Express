@@ -23,22 +23,16 @@ export async function getActivitiesByUserID(number) {
 /* This function returns an array containing a single activity linked to a specific Activity ID */
 
 export async function getActivitiesByActivityID(number) { 
-  const resultList = [];
   
   for (let i = 0; i < activities.length; i++) {
     
-    
-      if (activities[i].id == number) {
-          resultList.push(activities[i]);
-      }
-    }
-      
-  if (resultList.length === 0) {
-    throw new Error(`No activity with Activity ID ${number} found.`);
-  }
-return resultList;
+      if (activities[i].id == number) {  
+        const result = activities[i];
+        return result;
+      };
+  }; 
+  throw new Error(`No activity with Activity ID ${number} found.`);
 };
-
 
 /* This function adds a new activity to our database and returns the newly added activity */
 
@@ -77,3 +71,17 @@ export async function updateActivity(updates) {
   return activities[index]
 };
 
+export async function deleteActivityById(id) {
+  const findID = (act) => act.id == id;
+  const index = activities.findIndex(findID);
+  if (index === -1) {
+    throw new Error(`No activity ID with ${id} found.`);
+  };
+  const [deletedActivity] = activities.splice(index, 1);
+  return deletedActivity;
+}
+
+
+
+
+  
