@@ -62,6 +62,12 @@ app.get("/activities", async (req,res) => {
      });
 
 
+    /* 
+This handler function takes an user ID from the callers's input, passes it into the getActivitiesByUserID function, and returns either:
+• the array containing the activity associated with that user id to the function caller 
+• an error message including a status code and explanation 
+*/
+
 app.get("/activities/user/:id", async (req,res) => {
    const id = req.params.id; // id from reqest param's object
    try {
