@@ -3,19 +3,7 @@ import activities from "../libs/activities.js";
 /* This function returns an array of all activities */
 
 export async function getAllActivities() { 
-  const resultList = [];
-  
-  for (let i = 0; i < activities.length; i++) {
-    
-      
-          resultList.push(activities[i]);
-     
-    }
-      
-  if (resultList.length === 0) {
-    throw new Error(`No activities found.`);
-  }
-return resultList;
+  return activities
 };
 
 
