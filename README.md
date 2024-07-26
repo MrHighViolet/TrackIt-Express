@@ -38,7 +38,7 @@ In the command line, run
 node app.js
 ```
 
-### 1\. Using TrackIt - overview of API endpoints
+###  Using TrackIt - overview of API endpoints
 
 ### 1\. Welcome Message
 
@@ -55,7 +55,35 @@ node app.js
 
 `Hello world! Welcome to TrackIt!`
 
-### 2\. Get Activities by User ID
+### 2\. Get All Activities 
+
+**Endpoint:** `/activities`
+
+**Method:** `GET`
+
+**Description:** Retrieves an array of all activities.
+
+**Responses:**
+
+-   `200 OK` - Returns an array of activities.
+
+```
+    {
+        "success": true,
+        "payload": [...]
+    }
+```
+
+-   `404 Not Found` - Returns an error message if no activities are found.
+
+```
+    {
+        "error": "Error message"
+    }
+
+```
+
+### 3\. Get Activities by User ID
 
 **Endpoint:** `/activities/user/:id`
 
@@ -87,7 +115,7 @@ node app.js
 
 ```
 
-### 3\. Get Activity by Activity ID
+### 4\. Get Activity by Activity ID
 
 **Endpoint:** `/activities/:id`
 
@@ -119,7 +147,7 @@ node app.js
     }
 ```
 
-### 4\. Add New Activity
+### 5\. Add New Activity
 
 **Endpoint:** `/activities`
 
@@ -158,7 +186,7 @@ node app.js
     }
 ```
 
-### 5\. Update Existing Activity
+### 6\. Update Existing Activity
 
 **Endpoint:** `/activities`
 
@@ -195,11 +223,44 @@ node app.js
 
 
 ```
+
+
+
     {
         "error": "Error message"
     }
 ```
+### 7\. Delete Existing Activity
 
+**Endpoint:** `/activities/:id`
+
+**Method:** `DELETE`
+
+**Description:** Deletes an existing activity from the database.
+
+**Parameters:**
+
+-   `id` (path parameter) - The ID of the activity.
+
+**Responses:**
+
+-   `200 OK` - Returns the deleted activity object.
+
+
+```
+    {
+        "success": true,
+        "payload": {...}
+    }
+```
+
+-   `404 Not Found` - Returns an error message if the activity ID is not found.
+
+```
+    {
+        "error": "Error message"
+    }
+```
 * * * * *
 
 To run the application locally, use the following URL:

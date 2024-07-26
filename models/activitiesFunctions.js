@@ -1,5 +1,21 @@
 import activities from "../libs/activities.js"; 
 
+export async function getAllActivities() { 
+  const resultList = [];
+  
+  for (let i = 0; i < activities.length; i++) {
+    
+      
+          resultList.push(activities[i]);
+     
+    }
+      
+  if (resultList.length === 0) {
+    throw new Error(`No activities found.`);
+  }
+return resultList;
+};
+
 
 /* This function returns an array of activities linked to a specific User ID */
 
@@ -70,6 +86,8 @@ export async function updateActivity(updates) {
 
   return activities[index]
 };
+
+/* This function deletes an existing activity with the specified id from the list and returns the deleted activity */
 
 export async function deleteActivityById(id) {
   const findID = (act) => act.id == id;
