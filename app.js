@@ -12,7 +12,7 @@ import {
     addNewActivity,
     updateActivity,
     deleteActivityById
-    } from "./models/activitiesFunctions.js";
+} from "./models/activitiesFunctions.js";
 
 app.use(express.json())
 
@@ -25,7 +25,7 @@ This handler function sets up a welcome message to display on our landing page
 */
 
 app.get('/', (req, res) => {
-res.send("Hello world! Welcome to TrackIt!")
+    res.send("Hello world! Welcome to TrackIt!")
 });
 
 
@@ -47,41 +47,41 @@ This handler function returns either:
 */
 
 
-app.get("/activities", async (req,res) => {
+app.get("/activities", async (req, res) => {
     try {
-             const payload = await getAllActivities();
-             res.status(200).json({
-                 "success": true,
-                 "payload": payload
-             });
-         } catch (error) {
-             res.status(404).json({
-                 "error": error.message
-             });
-         }
-     });
+        const payload = await getAllActivities();
+        res.status(200).json({
+            "success": true,
+            "payload": payload
+        });
+    } catch (error) {
+        res.status(404).json({
+            "error": error.message
+        });
+    }
+});
 
 
-    /* 
+/* 
 This handler function takes an user ID from the callers's input, passes it into the getActivitiesByUserID function, and returns either:
 • the array containing the activity associated with that user id to the function caller 
 • an error message including a status code and explanation 
 */
 
-app.get("/activities/user/:id", async (req,res) => {
-   const id = req.params.id; // id from reqest param's object
-   try {
-            const payload = await getActivitiesByUserID(id);
-            res.status(200).json({
-                "success": true,
-                "payload": payload
-            });
-        } catch (error) {
-            res.status(404).json({
-                "error": error.message
-            });
-        }
-    });
+app.get("/activities/user/:id", async (req, res) => {
+    const id = req.params.id; // id from reqest param's object
+    try {
+        const payload = await getActivitiesByUserID(id);
+        res.status(200).json({
+            "success": true,
+            "payload": payload
+        });
+    } catch (error) {
+        res.status(404).json({
+            "error": error.message
+        });
+    }
+});
 
 
 
@@ -91,7 +91,7 @@ This handler function takes an activity ID from the callers's input, passes it i
 • an error message including a status code and explanation 
 */
 
-app.get("/activities/:id", async (req,res) => {
+app.get("/activities/:id", async (req, res) => {
     //const { id } = req.params;
     const id = req.params.id; // id from reqest param's object
     try {
@@ -167,7 +167,7 @@ either:
 • an error message including a status code and explanation 
 */
 
-app.delete("/activities/:id", async (req,res) => {
+app.delete("/activities/:id", async (req, res) => {
     const id = req.params.id; // id from reqest param's object
     try {
         const payload = await deleteActivityById(id);
