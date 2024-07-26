@@ -41,9 +41,8 @@ app.listen(port, () => {
 
 
 /* 
-This handler function takes a user ID from the callers's input, passes it into the getActivitiesByUserID function, and returns
-either:
-• the array of activities associated with that user id to the function caller 
+This handler function returns either:
+• the array of all activities 
 • an error message including a status code and explanation 
 */
 

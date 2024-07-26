@@ -1,5 +1,7 @@
 import activities from "../libs/activities.js"; 
 
+/* This function returns an array of all activities */
+
 export async function getAllActivities() { 
   const resultList = [];
   
