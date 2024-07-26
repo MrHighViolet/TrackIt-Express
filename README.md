@@ -1,4 +1,4 @@
-# Welcome to app.js
+# Welcome to TrackIt
 ## Authors: Jin Wang, Oli Kelly & Jonathan Hill
 
 ### Setup Instructions
