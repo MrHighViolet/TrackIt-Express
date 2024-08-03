@@ -3,6 +3,7 @@ import helmet from 'helmet';
 import { v4 as uuidv4 } from 'uuid';
 
 const app = express();
+import { param, validationResult } from 'express-validator';
 const port = 3000;
 
 import {
@@ -167,8 +168,15 @@ either:
 • an error message including a status code and explanation 
 */
 
-app.delete("/activities/:id", async (req, res) => {
-    const id = req.params.id; // id from reqest param's object
+// param('id').notEmpty() - id path param validated & checked if not empty
+app.delete("/activities/:id", param('id').notEmpty(), async (req, res) => {
+    
+    const result = validationResult(req); // assigns result of validation
+    if (!result.isEmpty()) { // if there are errors
+        return res.status(400).json({ errors: result.array() });
+    }
+    
+    const id = req.params.id; // id from req param's object
     try {
         const payload = await deleteActivityById(id);
         res.status(200).json({
@@ -179,7 +187,7 @@ app.delete("/activities/:id", async (req, res) => {
         res.status(404).json({
             "error": error.message
         });
-    }
+    };
 });
 
 
