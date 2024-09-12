@@ -53,6 +53,8 @@ export async function updateActivity(updates) {
   let index = null;
   const activityID = 'id' in updates;
 
+
+
   if (!activityID) {
     throw new Error(`You haven't given us an id.`);
   }
