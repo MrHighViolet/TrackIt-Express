@@ -192,3 +192,4 @@ app.delete("/activities/:id", param('id').notEmpty(), async (req, res) => {
 
 
 /*  To run locally, use this URL - http://localhost:3000 */
+// lint test
